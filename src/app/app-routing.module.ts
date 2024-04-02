@@ -5,6 +5,8 @@ import { RepositComponent } from './reposit/reposit.component';
 
 const routes: Routes = [  {path: '', redirectTo: '/login', pathMatch: 'full'},
 {path: 'login', component: LoginComponent, },
+{path: 'login', component: LoginComponent },
+// {path: 'register', component: RegisterComponent },
 {
   path:'reposit',loadChildren:()=>import('./reposit/reposit/reposit.module').then((m)=>m.RepositModule)
  },];
