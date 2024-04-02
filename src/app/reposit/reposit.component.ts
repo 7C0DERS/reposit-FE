@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SidebarComponent } from '../sidebar/sidebar.component';
   declare var bootstrap: any; 
 @Component({
   selector: 'app-reposit',

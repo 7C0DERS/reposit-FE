@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RepositComponent } from '../reposit.component';
 
 const routes: Routes = [{
-  path:"",component:RepositComponent
+  path:"",component:RepositComponent,
 }];
 
 @NgModule({

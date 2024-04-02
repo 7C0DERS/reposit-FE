@@ -1,19 +1,40 @@
-.bg-purple{
+.bg-purple {
   background-color: #38415e;
-
 }
-.bg-darkblue{
+.card {
+  max-width: 400px;
+  margin: auto;
+}
+.bg-darkblue {
   background-color: rgba(42, 14, 123, 0.934);
 }
-.text-purple{
-  color:blueviolet;
+.text-purple {
+  color: blueviolet;
 }
-.text-bold{
+.text-bold {
   font-weight: bolder;
 }
-.background-login{
-   background: rgb(252,251,253);
-   background: linear-gradient(162deg, rgba(252,251,253,0.9847805333070728) 0%, rgba(255,255,255,1) 55%, rgba(75,87,126,1) 56%, rgba(75,87,126,1) 73%, rgba(56,65,94,1) 85%, rgba(56,65,94,1) 99%);
-   background-repeat: no-repeat;
-   background-size: cover;
+.background-login {
+}
+.body {
+  background: rgb(252, 251, 253);
+  background: linear-gradient(
+    162deg,
+    rgba(252, 251, 253, 0.9847805333070728) 0%,
+    rgba(255, 255, 255, 1) 55%,
+    rgba(75, 87, 126, 1) 56%,
+    rgba(75, 87, 126, 1) 73%,
+    rgba(56, 65, 94, 1) 85%,
+    rgba(56, 65, 94, 1) 99%
+  );
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+.tops {
+  margin-top: 11.3%;
+}
+@media (max-width: 992px) {
+  .tops {
+    margin-top: 26%;
+  }
 }
