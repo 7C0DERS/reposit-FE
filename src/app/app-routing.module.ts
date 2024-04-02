@@ -3,9 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RepositComponent } from './reposit/reposit.component';
 
-const routes: Routes = [  {path: '', redirectTo: '/reposit', pathMatch: 'full'},
+const routes: Routes = [  {path: '', redirectTo: '/login', pathMatch: 'full'},
 {path: 'login', component: LoginComponent, },
-{path: 'reposit', component: RepositComponent}];
+{
+  path:'reposit',loadChildren:()=>import('./reposit/reposit/reposit.module').then((m)=>m.RepositModule)
+ },];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,75 +1,141 @@
 <div class="container-fluid mt-5">
-    <div class="top-bar">
-        <div class="first">
-            <h2>Reposit</h2> 
-            <p>Manage your List here</p>
-        </div>
-           
-   <div class="second">
-    <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#exampleModal">
- Add Repo
-  </button>
-   </div>
-
-  
-
+  <div class="top-bar">
+    <div class="first">
+      <h2>Reposit</h2>
+      <p>Manage your List here</p>
     </div>
-    <div class="form-group has-searc w-25 mt-5">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Search"
-    
-        />
-      </div>
-    <table class="table table-bordered table-striped mt-2">
-        <thead>
-          <tr>
-            <th scope="col">Header 1</th>
-            <th scope="col">Header 2</th>
-            <th scope="col">Header 3</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Row 1, Cell 1</td>
-            <td>Row 1, Cell 2</td>
-            <td>Row 1, Cell 3</td>
-          </tr>
-          <tr>
-            <td>Row 2, Cell 1</td>
-            <td>Row 2, Cell 2</td>
-            <td>Row 2, Cell 3</td>
-          </tr>
-          <tr>
-            <td>Row 3, Cell 1</td>
-            <td>Row 3, Cell 2</td>
-            <td>Row 3, Cell 3</td>
-          </tr>
-        </tbody>
-      </table>
+
+    <div class="second">
+      <button
+        type="button"
+        class="btn"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        Add Repo
+      </button>
+    </div>
+  </div>
+  <div class="form-group has-searc w-25 mt-5">
+    <input type="text" class="form-control" placeholder="Search" />
+  </div>
+  <table class="table table-bordered table-striped mt-2">
+    <thead>
+      <tr>
+        <th scope="col">Header 1</th>
+        <th scope="col">Header 2</th>
+        <th scope="col">Header 3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Row 1, Cell 1</td>
+        <td>Row 1, Cell 2</td>
+        <td>Row 1, Cell 3</td>
+      </tr>
+      <tr>
+        <td>Row 2, Cell 1</td>
+        <td>Row 2, Cell 2</td>
+        <td>Row 2, Cell 3</td>
+      </tr>
+      <tr>
+        <td>Row 3, Cell 1</td>
+        <td>Row 3, Cell 2</td>
+        <td>Row 3, Cell 3</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Repo Name</h5>
+      </div>
+        <form [formGroup]="listForm">
+          <div class="modal-body text-left">
+            <div class="form-group">
+              <label for="exampleInputPassword1">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                name="name"
+                id="exampleInputPassword1"
+                formControlName="name"
+              />
+            </div>
+            <h6 class="mt-2">Stage Name</h6>
+            <div class="scroll">
+              <ng-container formArrayName="options">
+                <ng-container
+                  *ngFor="let options of getOptions.controls; let i = index"
+                >
+                  <div [formGroupName]="i">
+                    <input
+                      type="text"
+                      placeholder="Stage Name"
+                      class="custom-input"
+                      formControlName="stages"
+                      name="stages"
+                    />
+      
+                    <span class="text-danger mx-3">
+                      <em class="fa fa-trash" (click)="removeInput(i)"></em
+                    ></span>
+                    <div
+                      class="error"
+                      *ngIf="
+                        options.get('stages')?.hasError('required') &&
+                        options.get('stages')?.touched
+                      "
+                    >
+                      *please fill this field
+                    </div>
+                  </div>
+                </ng-container>
+              </ng-container>
+            </div>
+            <span class="duplicate" (click)="addInput()"
+              ><em class="bi bi-plus"></em>Add Stage</span
+            >
+      
+            <div
+              class="error text-danger"
+              *ngIf="getOptions.length == 0 && showError"
+            >
+              <p>Add atleast one option*</p>
+            </div>
+          </div>
+     
+          <!-- <div class="text-right my-3 mt-2">
+            <button class="btn btn-danger mx-1" (click)="cancelcreatemodal()">
+              Cancel
+            </button>
+            <button
+              class="btn btn-success mx-1"
+              [disabled]="listForm.invalid"
+              (click)="savecreatemodal()"
+            >
+              Save
+            </button>
+          </div> -->
+        </form>
 
-
-
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button> -->
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cancelcreatemodal()">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary"  [disabled]="listForm.invalid" (click)="savecreatemodal()" >Save changes</button>
       </div>
     </div>
   </div>
+</div>

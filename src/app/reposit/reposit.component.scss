@@ -1,4 +1,5 @@
 
+@import "~bootstrap-icons/font/bootstrap-icons.css";
 .table{
     background-color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
@@ -20,4 +21,26 @@ h2{
 }
 .header{
     background-color: #6699cc;
+}
+
+::ng-deep .modal-dialog {
+    max-width: 650px !important;
+    width: auto;
+}
+.names{
+    width: 80%;
+}
+.duplicate {
+    cursor: pointer;
+}
+.custom-input{
+    width: 80%;
+    margin: 8px;
+    padding: 5px;
+}
+.custom-input:focus{
+    border: lavender;
+}
+.error{
+    color: red;
 }

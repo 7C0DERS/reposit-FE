@@ -5,14 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { RepositComponent } from './reposit/reposit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MyInterceptorInterceptor } from './my-interceptor.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RepositComponent,
+
  
   ],
   imports: [
@@ -22,7 +23,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [   { provide: HTTP_INTERCEPTORS,
+    useClass:MyInterceptorInterceptor, multi: true },
+   
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
