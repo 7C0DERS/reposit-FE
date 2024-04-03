@@ -5,6 +5,7 @@ import { RepositRoutingModule } from './reposit-routing.module';
 import { RepositComponent } from '../reposit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from 'src/app/sidebar/sidebar.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { SidebarComponent } from 'src/app/sidebar/sidebar.component';
     RepositRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SidebarComponent
+    SidebarComponent,
+    HttpClientModule
 
   ]
 })

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { RepositServiceService } from './reposit-service.service';
   declare var bootstrap: any; 
 @Component({
   selector: 'app-reposit',
@@ -10,8 +11,10 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 export class RepositComponent {
   listForm!: FormGroup;
   showError!: boolean;
+  loopStage: any = [];
+  emptyVal: any;
 
-  constructor(private fb: FormBuilder,){
+  constructor(private fb: FormBuilder, private http:RepositServiceService){
     this.listForm = this.fb.group({
       name: ['', Validators.required],
       options: this.fb.array([]),
@@ -37,6 +40,18 @@ export class RepositComponent {
       const modalElement = document.getElementById('exampleModal');
       const modal = bootstrap.Modal.getInstance(modalElement); // Get the modal instance
       modal.hide(); // Hide the modal
+      this.emptyVal = this.listForm.value.options;
+      this.emptyVal.forEach((el:any) => {
+        this.loopStage.push(el.stages);
+      });
+      const obj = {
+        FolderName: this.listForm.value.name,
+        stages: this.loopStage,
+      };
+      this.http.post(obj).subscribe((x)=>{
+        console.log(x,obj,'done');
+        
+      })
       this.listForm.reset()
     }else{
       this.showError = true;
