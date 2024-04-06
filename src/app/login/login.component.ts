@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
-import { EmailValidator, FormBuilder,FormGroup,Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import {FormBuilder,FormGroup,Validators } from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 email :string ="";
 password :string ="";
 login!:FormGroup;
@@ -14,14 +14,14 @@ isLoginFailed = false;
 errormsg ='';
 constructor(private fb:FormBuilder){}
 ngOnInit():void{
-  console.log(this.login);
   this.login=this.fb.group({
-    email:['',Validators.required,EmailValidator],
+    email:['',Validators.required,Validators.email],
     password:['',Validators.required]
   });
 }
-onSubmit():void{
 
+onSubmit():void{
+  console.log(this.login);
   if(this.login.valid){
     // const {email,password} = this.login;
 
