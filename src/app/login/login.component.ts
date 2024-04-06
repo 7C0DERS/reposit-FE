@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder,FormGroup,Validators } from '@angular/forms';
+import { EmailValidator, FormBuilder,FormGroup,Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { LoginService } from './login.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,16 +14,16 @@ login!:FormGroup;
 isLoggedIn =false;
 isLoginFailed = false;
 errormsg ='';
-constructor(private fb:FormBuilder){}
+constructor(private fb:FormBuilder,private log:LoginService,private router:Router){}
 ngOnInit():void{
   this.login=this.fb.group({
-    email:['',Validators.required,Validators.email],
+    email:['',Validators.required,EmailValidator],
     password:['',Validators.required]
   });
 }
 
 onSubmit():void{
-  console.log(this.login);
+
   if(this.login.valid){
     // const {email,password} = this.login;
 

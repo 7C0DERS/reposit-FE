@@ -4,24 +4,35 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { MyInterceptorInterceptor } from './my-interceptor.interceptor';
+import { SidebarComponent } from './sidebar/sidebar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RepositModule } from './reposit/reposit/reposit.module';
 import { RegisterComponent } from './register/register.component';
+import { ManagementAppComponent } from './management-app/management-app.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ManagementAppComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    AppRoutingModule
+    FormsModule,
+    RepositModule,
+    HttpClientModule
+    
   ],
-  providers: [],
+  providers: [   { provide: HTTP_INTERCEPTORS,
+    useClass:MyInterceptorInterceptor, multi: true },
+   
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
